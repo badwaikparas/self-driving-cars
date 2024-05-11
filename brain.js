@@ -29,6 +29,12 @@ function addRandomPoint() {
   console.log(success);
 }
 
+function removeAll() {
+  graph.dispose();
+  ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+  graph.draw(ctx);
+}
+
 function removeRandomPoint() {
   if (graph.points.length == 0) {
     console.log("no points to remove");

@@ -49,6 +49,10 @@ class Graph {
   }
 
   tryAddSegment(segment) {
+    if (this.points.length < 2) {
+      console.log("needs atleast 2 points");
+      return false;
+    }
     if (!this.containsSegment(segment) && !segment.p1.equals(segment.p2)) {
       this.addSegment(segment);
       return true;
@@ -65,6 +69,11 @@ class Graph {
     }
     console.log("getSegmentsWithPoint");
     return segments;
+  }
+
+  dispose() {
+    this.points.length = 0;
+    this.segments.length = 0;
   }
 
   draw(ctx) {
