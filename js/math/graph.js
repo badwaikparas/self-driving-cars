@@ -33,21 +33,43 @@ class Graph {
   //   return false;
   // }
 
+  removeSegment(segment) {
+    this.segments.splice(this.segments.indexOf(segment), 1);
+  }
+  removePoint(point) {
+    const segments = this.getSegmentsWithPoint(point);
+    for (const segment of segments) {
+      this.removeSegment(segment);
+    }
+    this.points.splice(this.points.indexOf(point), 1);
+  }
+
   containsSegment(segment) {
     return this.segments.find((s) => s.equals(segment));
   }
 
   tryAddSegment(segment) {
-    if (!this.containsSegment(segment) && !seg.p1.equals(segment.p2)) {
+    if (!this.containsSegment(segment) && !segment.p1.equals(segment.p2)) {
       this.addSegment(segment);
       return true;
     }
     return false;
   }
 
+  getSegmentsWithPoint(point) {
+    const segments = [];
+    for (const segment of this.segments) {
+      if (segment.includes(point)) {
+        segments.push(segment);
+      }
+    }
+    console.log("getSegmentsWithPoint");
+    return segments;
+  }
+
   draw(ctx) {
-    for (const seg of this.segments) {
-      seg.draw(ctx);
+    for (const segment of this.segments) {
+      segment.draw(ctx);
     }
 
     for (const point of this.points) {
