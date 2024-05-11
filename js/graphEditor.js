@@ -70,6 +70,7 @@ class GraphEditor {
       this.hovered.draw(this.ctx, { fill: true });
     }
     if (this.selected) {
+      const intent = this.hovered ? this.hovered : this.mouse;
       new Segment(this.selected, this.mouse).draw(ctx);
       this.selected.draw(this.ctx, { outline: true });
     }
