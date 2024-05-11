@@ -17,10 +17,10 @@ class GraphEditor {
     this.canvas.addEventListener("mousedown", (evt) => {
       if (evt.button == 2) {
         // right click
-        if (this.hovered) {
-          this.#removePoint(this.hovered);
-        } else {
+        if (this.selected) {
           this.selected = null;
+        } else if (this.hovered) {
+          this.#removePoint(this.hovered);
         }
       }
       if (evt.button == 0) {
@@ -71,7 +71,7 @@ class GraphEditor {
     }
     if (this.selected) {
       const intent = this.hovered ? this.hovered : this.mouse;
-      new Segment(this.selected, this.mouse).draw(ctx);
+      new Segment(this.selected, this.mouse).draw(ctx, { dash: [3, 3] });
       this.selected.draw(this.ctx, { outline: true });
     }
   }
