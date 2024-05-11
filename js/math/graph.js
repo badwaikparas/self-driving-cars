@@ -16,22 +16,6 @@ class Graph {
     return this.points.find((p) => p.equals(point));
   }
 
-  // containsSegment(segment) {
-  //   return this.segments.find(
-  //     (s) =>
-  //       (s.p1.equals(segment.p1) && s.p2.equals(segment.p2)) ||
-  //       (s.p2.equals(segment.p1) && s.p1.equals(segment.p2))
-  //   );
-  // }
-
-  containsSegment(segment) {
-    return this.segments.some(
-      (s) =>
-        (s.p1.equals(segment.p1) && s.p2.equals(segment.p2)) ||
-        (s.p1.equals(segment.p2) && s.p2.equals(segment.p1))
-    );
-  }
-
   tryAddPoint(point) {
     if (!this.containsPoint(point)) {
       this.addPoint(point);
@@ -41,7 +25,7 @@ class Graph {
   }
 
   // tryAddSegment(segment) {
-  //   if (!this.containsSegment(segment)) {
+  //   if (!segment.p1.equals(segment.p2) && !this.containsSegment(segment)) {
   //     this.addSegment(segment);
   //     console.log(segment.p1, segment.p2);
   //     return true;
@@ -49,10 +33,13 @@ class Graph {
   //   return false;
   // }
 
+  containsSegment(segment) {
+    return this.segments.find((s) => s.equals(segment));
+  }
+
   tryAddSegment(segment) {
-    if (!segment.p1.equals(segment.p2) && !this.containsSegment(segment)) {
+    if (!this.containsSegment(segment) && !seg.p1.equals(segment.p2)) {
       this.addSegment(segment);
-      console.log(segment.p1, segment.p2);
       return true;
     }
     return false;
