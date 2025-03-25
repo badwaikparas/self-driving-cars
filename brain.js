@@ -27,17 +27,18 @@ const graphEditor = new GraphEditor(viewport, graph);
 animate();
 
 function animate() {
-  viewport.reset();
-  graphEditor.display();
-  requestAnimationFrame(animate);
+    viewport.reset();
+    graphEditor.display();
+    new Envelope(graph.segments[0], 200, 20).draw(ctx)
+    requestAnimationFrame(animate);
 }
 
 function dispose() {
-  graphEditor.dispose();
+    graphEditor.dispose();
 }
 
 function save() {
-  localStorage.setItem("graph", JSON.stringify(graph));
+    localStorage.setItem("graph", JSON.stringify(graph));
 }
 
 // function addRandomPoint() {

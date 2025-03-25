@@ -1,28 +1,39 @@
 function getNearestPoint(loc, points, threshold = Number.MAX_SAFE_INTEGER) {
-  let minDist = Number.MAX_SAFE_INTEGER;
-  let nearest = null;
-  for (const point of points) {
-    const dist = distance(point, loc);
-    if (dist < minDist && dist < threshold) {
-      minDist = dist;
-      nearest = point;
+    let minDist = Number.MAX_SAFE_INTEGER;
+    let nearest = null;
+    for (const point of points) {
+        const dist = distance(point, loc);
+        if (dist < minDist && dist < threshold) {
+            minDist = dist;
+            nearest = point;
+        }
     }
-  }
-  return nearest;
+    return nearest;
 }
 
 function distance(p1, p2) {
-  return Math.hypot(p1.x - p2.x, p1.y - p2.y);
+    return Math.hypot(p1.x - p2.x, p1.y - p2.y);
 }
 
 function add(p1, p2) {
-  return new Point(p1.x + p2.x, p1.y + p2.y);
+    return new Point(p1.x + p2.x, p1.y + p2.y);
 }
 
 function subtract(p1, p2) {
-  return new Point(p1.x - p2.x, p1.y - p2.y);
+    return new Point(p1.x - p2.x, p1.y - p2.y);
 }
 
 function scale(p1, scaler) {
-  return new Point(p1.x * scaler, p1.y * scaler);
+    return new Point(p1.x * scaler, p1.y * scaler);
+}
+
+function translate(loc, angle, offset) {
+    return new Point(
+        loc.x + offset * Math.cos(angle),
+        loc.y + offset * Math.sin(angle)
+    )
+}
+
+function angle(p) {
+    return Math.atan2(p.y, p.x);
 }
