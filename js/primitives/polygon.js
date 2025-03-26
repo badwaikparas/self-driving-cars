@@ -64,6 +64,17 @@ class Polygon {
         // return intersections
     }
 
+    intersectsPoly(poly) {
+        for (let s1 of this.segments) {
+            for (let s2 of poly.segments) {
+                if (getIntersections(s1.p1, s1.p2, s2.p1, s2.p2)) {
+                    return true;
+                }
+            }
+        }
+        return false
+    }
+
     containsSegment(seg) {
         const midPoint = average(seg.p1, seg.p2);
         return this.containsPoint(midPoint)
