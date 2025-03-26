@@ -26,7 +26,7 @@ class World {
             env.draw(ctx)
         }
         for (const int of this.intersections) {
-            int.draw(ctx)
+            int.draw(ctx, { color: "red", size: 6 })
         }
     }
 
