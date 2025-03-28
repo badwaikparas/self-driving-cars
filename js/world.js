@@ -147,14 +147,14 @@ class World {
         }
 
         const bases = []
-
         for (const seg of supports) {
             bases.push(new Envelope(seg, this.buildingWidth).poly)
         }
 
+        const epsilon = 0.001
         for (let i = 0; i < bases.length; i++) {
             for (let j = i + 1; j < bases.length; j++) {
-                if (bases[i].intersectsPoly(bases[j])) {
+                if (bases[i].intersectsPoly(bases[j]) || bases[i].distanceToPoly(bases[j]) < this.spacing - epsilon) {
                     bases.splice(j, 1)
                     j--
                 }
